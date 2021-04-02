@@ -1,9 +1,8 @@
-import React, { useEffect, useState, Fragment } from "react";
-import axios from "axios";
+import React, { Fragment } from "react";
 import "./css/card.css";
 
 const Card = ({ albumData }) => {
-	const renderAlbums = albumData.items.map((album) => {
+	const renderAlbums = albumData.map((album) => {
 		return (
 			<Fragment key={album.id}>
 				<div className="card">

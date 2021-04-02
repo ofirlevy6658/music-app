@@ -30,14 +30,16 @@ const SpotifyApi = (props) => {
 			}
 		}, 1500);
 		return () => {
-			console.log(query);
 			clearTimeout(timeout);
 		};
 	}, [query]);
 
 	return (
 		<>
-			<input onChange={(e) => setQuery(e.target.value)} />
+			<input
+				className="search-bar"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
 			{data && <Card albumData={data.albums.items} />}
 		</>
 	);

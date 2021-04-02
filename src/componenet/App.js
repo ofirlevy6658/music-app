@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+import "./css/app.css";
 import SpotifyApi from "./SpotifyApi";
-import { Credentials } from "./Credentials.js";
-
-// BQAxXj7JvGmmcN3M0xpVjNi87ZSu0L8yqwZiK3SxANF1182clco4O_wSX0AI5gcS4UtD83jmb0T5QW5P8idli2orCUlgu-MUTOS84X1fcMBO1p6Aj48GSDltaYW7yY5rO52xBH6lI0B4-pazvbpmnNGXkkB2QqouF5BZsFm8skBE0xZze2WZVz8
+import { Credentials } from "./Credentials";
+import NavCategory from "./NavCategory";
+import Card from "./Card";
 
 const App = () => {
 	const spotify = Credentials();
 	const [Token, setToken] = useState();
-	const [generes, setGenere] = useState("s");
-	const [song, setSong] = useState([]);
-
+	const [data, setData] = useState(null);
+	const [query, setQuery] = useState(null);
 	useEffect(() => {
 		const getToken = async () => {
 			const response = await axios("https://accounts.spotify.com/api/token", {
@@ -24,25 +25,53 @@ const App = () => {
 				method: "POST",
 			});
 			setToken(response.data.access_token);
-			// "1jWmEhn3ggaL6isoyLfwBn"
-			// const getGenere = await axios(
-			// 	"https://api.spotify.com/v1/browse/categories?locale=sv_US",
-			// 	{
-			// 		method: "GET",
-			// 		headers: {
-			// 			Authorization: "Bearer " + Token,
-			// 		},
-			// 	}
-			// );
-			// console.log(getSong);
-			// setGenere(getGenere);
-			// console.log(getGenere.data.categories.items[0].href);
 		};
-		getToken();
+		return () => {
+			getToken();
+		};
 	}, []);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const response = await axios(
+				`https://api.spotify.com/v1/search?query=${encodeURIComponent(
+					query
+				)}&type=album,playlist,artist`,
+				{
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + Token,
+					},
+				}
+			);
+			setData(response.data);
+		};
+		const timeout = setTimeout(() => {
+			if (query) {
+				fetchData();
+			}
+		}, 1500);
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [query]);
+
 	return (
 		<>
-			<SpotifyApi token={Token} />
+			<input
+				className="search-bar"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
+			<BrowserRouter>
+				<NavCategory />
+				<Switch>
+					<Route
+						path="/albums"
+						exact
+						component={() => data && <Card albumData={data.albums} />}
+					/>
+				</Switch>
+			</BrowserRouter>
 		</>
 	);
 };

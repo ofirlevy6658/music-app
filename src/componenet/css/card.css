@@ -1,9 +1,11 @@
-img {
-	height: 150px;
-}
-
 .card {
 	display: inline-block;
-	height: 200px;
-	border: solid 1px black;
+	margin: 1rem;
+	box-shadow: 0 2px 7px 3px #949ca5;
+	text-align: center;
+}
+
+.card img {
+	max-width: 250px;
+	height: 250px;
 }

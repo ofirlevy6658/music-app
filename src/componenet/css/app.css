@@ -1,0 +1,27 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background: #f3f4f6;
+	font-family: "Montserrat", -apple-system, system-ui, BlinkMacSystemFont,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: #778298;
+}
+
+.search-container {
+	border: black solid 3px;
+}
+.search-bar {
+	display: block;
+	margin: 0 auto;
+	width: 400px;
+	padding: 5px 15px;
+}
