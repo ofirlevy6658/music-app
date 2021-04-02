@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
+import SpotifyApi from "./SpotifyApi";
 import { Credentials } from "./Credentials.js";
 
 // BQAxXj7JvGmmcN3M0xpVjNi87ZSu0L8yqwZiK3SxANF1182clco4O_wSX0AI5gcS4UtD83jmb0T5QW5P8idli2orCUlgu-MUTOS84X1fcMBO1p6Aj48GSDltaYW7yY5rO52xBH6lI0B4-pazvbpmnNGXkkB2QqouF5BZsFm8skBE0xZze2WZVz8
@@ -22,6 +24,7 @@ const App = () => {
 				method: "POST",
 			});
 			setToken(response.data.access_token);
+			// "1jWmEhn3ggaL6isoyLfwBn"
 			// const getGenere = await axios(
 			// 	"https://api.spotify.com/v1/browse/categories?locale=sv_US",
 			// 	{
@@ -37,7 +40,11 @@ const App = () => {
 		};
 		getToken();
 	}, []);
-	return <></>;
+	return (
+		<>
+			<SpotifyApi token={Token} />
+		</>
+	);
 };
 
 export default App;

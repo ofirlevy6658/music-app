@@ -1,0 +1,9 @@
+img {
+	height: 150px;
+}
+
+.card {
+	display: inline-block;
+	height: 200px;
+	border: solid 1px black;
+}
