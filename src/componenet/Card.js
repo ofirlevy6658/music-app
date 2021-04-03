@@ -1,5 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
-import axios from "axios";
+import React, { Fragment } from "react";
 import "./css/card.css";
 
 const Card = ({ albumData }) => {
@@ -8,12 +7,13 @@ const Card = ({ albumData }) => {
 			<Fragment key={album.id}>
 				<div className="card">
 					<img src={album.images[0].url} alt="album img" />
-					<p>{album.artists[0].name}</p>
+					<p>{album.name}</p>
+					{/* <p>{album.artists[0].name}</p> */}
 				</div>
 			</Fragment>
 		);
 	});
-	return <div>{renderAlbums}</div>;
+	return <div>{albumData && renderAlbums}</div>;
 };
 
 export default Card;

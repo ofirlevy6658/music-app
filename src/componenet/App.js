@@ -3,16 +3,18 @@ import axios from "axios";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./css/app.css";
-import SpotifyApi from "./SpotifyApi";
 import { Credentials } from "./Credentials";
 import NavCategory from "./NavCategory";
 import Card from "./Card";
+import Artist from "./Artist";
+import Album from "./Album";
 
 const App = () => {
 	const spotify = Credentials();
 	const [Token, setToken] = useState();
 	const [data, setData] = useState(null);
 	const [query, setQuery] = useState(null);
+
 	useEffect(() => {
 		const getToken = async () => {
 			const response = await axios("https://accounts.spotify.com/api/token", {
@@ -26,9 +28,7 @@ const App = () => {
 			});
 			setToken(response.data.access_token);
 		};
-		return () => {
-			getToken();
-		};
+		getToken();
 	}, []);
 
 	useEffect(() => {
@@ -70,6 +70,12 @@ const App = () => {
 						exact
 						component={() => data && <Card albumData={data.albums} />}
 					/>
+					<Route
+						path="/artists"
+						exact
+						component={() => data && <Artist artistData={data.artists} />}
+					/>
+					<Route path="/albums/:id" exact component={Album} />
 				</Switch>
 			</BrowserRouter>
 		</>

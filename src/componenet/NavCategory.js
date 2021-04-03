@@ -7,7 +7,7 @@ const NavCategory = () => {
 			<Link to="/albums" className="item">
 				Albums
 			</Link>
-			<Link to="/" className="item">
+			<Link to="/artists" className="item">
 				Artist
 			</Link>
 		</div>
