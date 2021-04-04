@@ -33,6 +33,7 @@ const App = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
+			console.log(Token);
 			const response = await axios(
 				`https://api.spotify.com/v1/search?query=${encodeURIComponent(
 					query
@@ -75,7 +76,11 @@ const App = () => {
 						exact
 						component={() => data && <Artist artistData={data.artists} />}
 					/>
-					<Route path="/albums/:id" exact component={Album} />
+					<Route
+						path="/albums/:id"
+						exact
+						component={() => <Album token={Token} />}
+					/>
 				</Switch>
 			</BrowserRouter>
 		</>
