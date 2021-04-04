@@ -51,7 +51,7 @@ const App = () => {
 			if (query) {
 				fetchData();
 			}
-		}, 1500);
+		}, 500);
 		return () => {
 			clearTimeout(timeout);
 		};

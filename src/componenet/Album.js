@@ -1,9 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import axios from "axios";
+import "./css/audioPlayer.css";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 const Album = ({ token }) => {
 	const [trackData, setTrackData] = useState([]);
+	const [selectedTrack, setSelectedTrack] = useState("");
+
 	const match = useRouteMatch();
 
 	useEffect(() => {
@@ -20,23 +25,38 @@ const Album = ({ token }) => {
 					},
 				}
 			);
+			console.log(response.data.tracks.items);
 			setTrackData(response.data.tracks.items);
 		};
 		fetchAlbum();
 	}, []);
 
 	const renderTracks = trackData.map((track) => {
-		console.log(track);
-		console.log(track.preview_url);
 		return (
-			<Fragment>
-				<p>{track.name}</p>
-				<audio src={track.preview_url} controls type="audio/mpeg" />
-			</Fragment>
+			<div
+				key={track.id}
+				onClick={() => setSelectedTrack(track)}
+				className="song"
+			>
+				<span>{track.name}</span>
+			</div>
 		);
 	});
 
-	return <div>{trackData && renderTracks}</div>;
+	return (
+		<>
+			{trackData && renderTracks}
+			<div>
+				{
+					<AudioPlayer
+						src={selectedTrack.preview_url}
+						header={`Now playing: ${selectedTrack.name}!`}
+						footer={` ${selectedTrack.artists[0].name}`}
+					/>
+				}
+			</div>
+		</>
+	);
 };
 
 export default Album;
