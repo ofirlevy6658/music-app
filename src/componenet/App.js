@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./css/app.css";
+
+import PlayList from "./PlayList";
 import { Credentials } from "./Credentials";
 import NavCategory from "./NavCategory";
 import Albums from "./Albums";
 import Artist from "./Artist";
 import Album from "./Album";
+import NotFound from "./NotFound";
 
 const App = () => {
 	const spotify = Credentials();
@@ -29,13 +31,10 @@ const App = () => {
 			setToken(response.data.access_token);
 		};
 		getToken();
-		console.log("Test");
 	}, [spotify.ClientId, spotify.ClientSecret]);
 
 	useEffect(() => {
-		console.log("test");
 		const fetchData = async () => {
-			console.log(Token);
 			const response = await axios(
 				`https://api.spotify.com/v1/search?query=${encodeURIComponent(
 					query
@@ -69,6 +68,9 @@ const App = () => {
 			<BrowserRouter>
 				<NavCategory />
 				<Switch>
+					<Route exact path="/">
+						<Redirect to="/albums" />
+					</Route>
 					<Route
 						path="/albums"
 						exact
@@ -82,10 +84,18 @@ const App = () => {
 						}
 					/>
 					<Route
+						path="/playlists"
+						exact
+						component={() =>
+							data && <PlayList playListData={data.playlists.items} />
+						}
+					/>
+					<Route
 						path="/albums/:id"
 						exact
 						component={() => <Album token={Token} />}
 					/>
+					<Route path="/" component={NotFound} />
 				</Switch>
 			</BrowserRouter>
 		</>

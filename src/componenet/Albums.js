@@ -11,7 +11,6 @@ const Albums = ({ albumData }) => {
 				<div className="card">
 					<img src={album.images[0].url} alt="album img" />
 					<p>{album.name.slice(0, 22)}</p>
-					{/* <p>{album.artists[0].name}</p> */}
 				</div>
 			</Link>
 		);
