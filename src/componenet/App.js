@@ -7,8 +7,7 @@ import { Credentials } from "./Credentials";
 import NavCategory from "./NavCategory";
 import Card from "./Card";
 import Artist from "./Artist";
-import Album from "./Album2";
-import NavTabs from "./TabPanel";
+import Album from "./Album";
 
 const App = () => {
 	const spotify = Credentials();
