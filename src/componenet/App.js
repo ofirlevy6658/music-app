@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./css/app.css";
 import { Credentials } from "./Credentials";
 import NavCategory from "./NavCategory";
-import Card from "./Card";
+import Albums from "./Albums";
 import Artist from "./Artist";
 import Album from "./Album";
 
@@ -29,9 +29,11 @@ const App = () => {
 			setToken(response.data.access_token);
 		};
 		getToken();
-	}, []);
+		console.log("Test");
+	}, [spotify.ClientId, spotify.ClientSecret]);
 
 	useEffect(() => {
+		console.log("test");
 		const fetchData = async () => {
 			console.log(Token);
 			const response = await axios(
@@ -55,7 +57,7 @@ const App = () => {
 		return () => {
 			clearTimeout(timeout);
 		};
-	}, [query]);
+	}, [query, Token]);
 
 	return (
 		<>
@@ -70,7 +72,7 @@ const App = () => {
 					<Route
 						path="/albums"
 						exact
-						component={() => data && <Card albumData={data.albums} />}
+						component={() => data && <Albums albumData={data.albums} />}
 					/>
 					<Route
 						path="/artists"

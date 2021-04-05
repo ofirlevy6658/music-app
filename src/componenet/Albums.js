@@ -2,7 +2,7 @@ import React from "react";
 import "./css/card.css";
 import { Link, useLocation } from "react-router-dom";
 
-const Card = ({ albumData }) => {
+const Albums = ({ albumData }) => {
 	const location = useLocation();
 
 	const renderAlbums = albumData.items.map((album) => {
@@ -19,4 +19,4 @@ const Card = ({ albumData }) => {
 	return <div>{albumData && renderAlbums}</div>;
 };
 
-export default Card;
+export default Albums;

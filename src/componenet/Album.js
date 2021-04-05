@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useRouteMatch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./css/audioPlayer.css";
 import AudioPlayer from "react-h5-audio-player";
@@ -12,14 +12,11 @@ const Album = ({ token }) => {
 		url: "",
 		artist: "",
 	});
-
-	const match = useRouteMatch();
-
+	const params = useParams();
 	useEffect(() => {
-		const albumId = match.params.id;
 		const fetchAlbum = async () => {
 			const response = await axios.get(
-				`https://api.spotify.com/v1/albums/${albumId}`,
+				`https://api.spotify.com/v1/albums/${params.id}`,
 				{
 					headers: {
 						Accept: "application/json",
@@ -31,7 +28,7 @@ const Album = ({ token }) => {
 			setTrackData(response.data.tracks.items);
 		};
 		fetchAlbum();
-	}, []);
+	}, [params, token]);
 
 	const renderTracks = trackData.map((track) => {
 		return (
