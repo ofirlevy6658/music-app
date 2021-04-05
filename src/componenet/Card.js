@@ -10,7 +10,7 @@ const Card = ({ albumData }) => {
 			<Link to={`${location.pathname}/${album.id}`} key={album.id}>
 				<div className="card">
 					<img src={album.images[0].url} alt="album img" />
-					<p>{album.name}</p>
+					<p>{album.name.slice(0, 22)}</p>
 					{/* <p>{album.artists[0].name}</p> */}
 				</div>
 			</Link>

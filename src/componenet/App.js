@@ -7,7 +7,8 @@ import { Credentials } from "./Credentials";
 import NavCategory from "./NavCategory";
 import Card from "./Card";
 import Artist from "./Artist";
-import Album from "./Album";
+import Album from "./Album2";
+import NavTabs from "./TabPanel";
 
 const App = () => {
 	const spotify = Credentials();
@@ -60,6 +61,7 @@ const App = () => {
 	return (
 		<>
 			<input
+				placeholder={`Search`}
 				className="search-bar"
 				onChange={(e) => setQuery(e.target.value)}
 			/>
@@ -74,7 +76,9 @@ const App = () => {
 					<Route
 						path="/artists"
 						exact
-						component={() => data && <Artist artistData={data.artists} />}
+						component={() =>
+							data && <Artist artistData={data.artists.items[0]} />
+						}
 					/>
 					<Route
 						path="/albums/:id"
