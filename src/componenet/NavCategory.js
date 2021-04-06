@@ -1,21 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import "./css/nav.css";
 const NavCategory = () => {
+	useEffect(() => {});
 	return (
-		<div>
-			<ul>
+		<>
+			<ul className="nav-bar">
 				<li>
-					<Link to="/albums">Albums</Link>
+					<NavLink activeClassName="selected" to="/albums">
+						Albums
+					</NavLink>
 				</li>
 				<li>
-					<Link to="/artists">Artist</Link>
+					<NavLink activeClassName="selected" to="/artists">
+						Artist
+					</NavLink>
 				</li>
 				<li>
-					<Link to="/playlists">Play Lists</Link>
+					<NavLink activeClassName="selected" to="/playlists">
+						Play Lists
+					</NavLink>
 				</li>
 			</ul>
-		</div>
+		</>
 	);
 };
 

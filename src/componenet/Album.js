@@ -5,6 +5,8 @@ import "./css/audioPlayer.css";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
+import Lyrics from "./Lyrics";
+
 const Album = ({ token }) => {
 	const [trackData, setTrackData] = useState([]);
 	const [selectedTrack, setSelectedTrack] = useState({
@@ -12,6 +14,7 @@ const Album = ({ token }) => {
 		url: "",
 		artist: "",
 	});
+
 	const params = useParams();
 	useEffect(() => {
 		const fetchAlbum = async () => {
@@ -60,6 +63,7 @@ const Album = ({ token }) => {
 					/>
 				}
 			</div>
+			<Lyrics song={selectedTrack.name} artist={selectedTrack.artist} />
 		</>
 	);
 };
