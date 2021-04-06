@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const Albums = ({ albumData }) => {
 	const location = useLocation();
-
 	const renderAlbums = albumData.items.map((album) => {
 		return (
 			<Link to={`${location.pathname}/${album.id}`} key={album.id}>

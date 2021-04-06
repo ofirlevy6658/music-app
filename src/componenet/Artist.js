@@ -2,7 +2,6 @@ import React from "react";
 import "./css/artist.css";
 
 const Artist = ({ artistData }) => {
-	console.log(artistData);
 	return (
 		<div className="artistContainer">
 			<div

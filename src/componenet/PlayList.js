@@ -1,7 +1,6 @@
 import React from "react";
 
 const PlayLists = ({ playListData }) => {
-	console.log(playListData);
 	const renderPlayLists = playListData.map((playlist) => {
 		return (
 			<div className="card" key={playlist.id}>

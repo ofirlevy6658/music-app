@@ -10,6 +10,7 @@ import Albums from "./Albums";
 import Artist from "./Artist";
 import Album from "./Album";
 import NotFound from "./NotFound";
+import Search from "./Search";
 
 const App = () => {
 	const spotify = Credentials();
@@ -58,14 +59,14 @@ const App = () => {
 		};
 	}, [query, Token]);
 
+	const searchHandle = (e) => {
+		setQuery(e.target.value);
+	};
+
 	return (
 		<>
-			<input
-				placeholder={`Search`}
-				className="search-bar"
-				onChange={(e) => setQuery(e.target.value)}
-			/>
 			<BrowserRouter>
+				<Search searchHandle={searchHandle} />
 				<NavCategory />
 				<Switch>
 					<Route exact path="/">
