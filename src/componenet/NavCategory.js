@@ -21,6 +21,11 @@ const NavCategory = () => {
 						Play Lists
 					</NavLink>
 				</li>
+				<li>
+					<NavLink activeClassName="selected" to="/song">
+						Song
+					</NavLink>
+				</li>
 			</ul>
 		</>
 	);

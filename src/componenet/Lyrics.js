@@ -11,9 +11,10 @@ const Lyrics = ({ song, artist }) => {
 				`http://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${song}&q_artist=${artist}&apikey=b9697200a043f352b27a1ae156c8deca`
 			);
 			// console.log(response.data.message.body.lyrics);
-			if (response.data.message.body.length !== 0)
-				setLyrics(response.data.message.body.lyrics.lyrics_body);
-			else setLyrics("");
+			if (response.data.message.body.length !== 0) {
+				const lyricsData = response.data.message.body.lyrics.lyrics_body;
+				setLyrics(lyricsData.slice(0, lyricsData.length - 75));
+			} else setLyrics("");
 		};
 
 		fetchData(song, artist);

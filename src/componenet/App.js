@@ -11,6 +11,7 @@ import Artist from "./Artist";
 import Album from "./Album";
 import NotFound from "./NotFound";
 import Search from "./Search";
+import Song from "./Song";
 
 const App = () => {
 	const spotify = Credentials();
@@ -39,7 +40,7 @@ const App = () => {
 			const response = await axios(
 				`https://api.spotify.com/v1/search?query=${encodeURIComponent(
 					query
-				)}&type=album,playlist,artist`,
+				)}&type=album,playlist,artist,track`,
 				{
 					method: "GET",
 					headers: {
@@ -49,6 +50,7 @@ const App = () => {
 			);
 			setData(response.data);
 		};
+
 		const timeout = setTimeout(() => {
 			if (query) {
 				fetchData();
@@ -66,7 +68,7 @@ const App = () => {
 	return (
 		<>
 			<BrowserRouter>
-				<Search searchHandle={searchHandle} />
+				<Search searchHandle={searchHandle} holder={"Search"} />
 				<NavCategory />
 				<Switch>
 					<Route exact path="/">
@@ -95,6 +97,11 @@ const App = () => {
 						path="/albums/:id"
 						exact
 						component={() => <Album token={Token} />}
+					/>
+					<Route
+						path="/song"
+						exact
+						component={() => data && <Song songs={data.tracks.items} />}
 					/>
 					<Route path="/" component={NotFound} />
 				</Switch>

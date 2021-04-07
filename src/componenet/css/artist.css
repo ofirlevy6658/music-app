@@ -1,17 +1,17 @@
-/* .back-img {
-	width: 50vw;
-} */
-
 .artistContainer {
 	height: 100vh;
 	width: 100%;
 }
-
+h2,
+p {
+	text-align: center;
+}
 .background {
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: cover;
-	opacity: 100%;
+	background-size: contain;
+	/* opacity: 100%; */
+	/* object-fit: contain; */
 	height: 50%;
 	width: 100%;
 }
