@@ -1,11 +1,18 @@
+.album-container {
+	display: flex;
+	color: black;
+}
+
 .album-songs {
-	border: black solid 3px;
-	width: 70%;
+	width: 50%;
 	display: inline-block;
+}
+span {
+	cursor: pointer;
 }
 
 .lyrics {
-	border: black solid 3px;
+	margin-top: 30px;
 	width: 25%;
 	display: inline-block;
 	margin-left: 15px;

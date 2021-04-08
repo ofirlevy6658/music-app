@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Spotify search app with lyrics
+
+This porject use spotify api to search albums/songs/artists/play lists.
+Musixmatch api for lyrics.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

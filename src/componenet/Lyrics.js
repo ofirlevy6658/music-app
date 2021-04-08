@@ -8,9 +8,8 @@ const Lyrics = ({ song, artist }) => {
 	useEffect(() => {
 		const fetchData = async (song, artist) => {
 			const response = await axios.get(
-				`https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${song}&q_artist=${artist}&apikey=b9697200a043f352b27a1ae156c8deca`
+				`http://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${song}&q_artist=${artist}&apikey=b9697200a043f352b27a1ae156c8deca`
 			);
-			// console.log(response.data.message.body.lyrics);
 			if (response.data.message.body.length !== 0) {
 				const lyricsData = response.data.message.body.lyrics.lyrics_body;
 				setLyrics(lyricsData.slice(0, lyricsData.length - 75));

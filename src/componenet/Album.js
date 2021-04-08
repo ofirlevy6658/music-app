@@ -53,9 +53,11 @@ const Album = ({ token }) => {
 
 	return (
 		<>
-			<div className="album-songs">{trackData && renderTracks}</div>
-			<div className="lyrics">
-				<Lyrics song={selectedTrack.name} artist={selectedTrack.artist} />
+			<div className="album-container">
+				<div className="album-songs">{trackData && renderTracks}</div>
+				<div className="lyrics">
+					<Lyrics song={selectedTrack.name} artist={selectedTrack.artist} />
+				</div>
 			</div>
 			<div>
 				{
