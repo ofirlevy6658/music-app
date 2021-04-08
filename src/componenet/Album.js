@@ -53,7 +53,10 @@ const Album = ({ token }) => {
 
 	return (
 		<>
-			{trackData && renderTracks}
+			<div className="album-songs">{trackData && renderTracks}</div>
+			<div className="lyrics">
+				<Lyrics song={selectedTrack.name} artist={selectedTrack.artist} />
+			</div>
 			<div>
 				{
 					<AudioPlayer
@@ -63,7 +66,6 @@ const Album = ({ token }) => {
 					/>
 				}
 			</div>
-			<Lyrics song={selectedTrack.name} artist={selectedTrack.artist} />
 		</>
 	);
 };

@@ -1,1 +1,12 @@
+.album-songs {
+	border: black solid 3px;
+	width: 70%;
+	display: inline-block;
+}
 
+.lyrics {
+	border: black solid 3px;
+	width: 25%;
+	display: inline-block;
+	margin-left: 15px;
+}

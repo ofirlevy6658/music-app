@@ -2,6 +2,7 @@ import React from "react";
 import "./css/artist.css";
 
 const Artist = ({ artistData }) => {
+	console.log(artistData.images[0].url);
 	return (
 		<div className="artistContainer">
 			<div
